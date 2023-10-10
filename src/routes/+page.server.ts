@@ -28,22 +28,6 @@ export const actions = {
             return fail(500, { status: error.status, message: 'error:' + error.message });
         }
     },
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    completingUpload: async ({ request, locals }) => {
-        try {
-            const session = await locals.getSession();
-            if (!session) return {};
-            const data = await request.formData();
-            const blobUrl = data.get('blobUrl') as string;
-
-            return JSON.stringify({ blobUrl });
-        } catch (error) {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            return fail(500, { status: error.status, message: 'error:' + error.message });
-        }
-    }
 } satisfies Actions;
 
 async function getSasUrl(containerName: string, fileName: string) {
